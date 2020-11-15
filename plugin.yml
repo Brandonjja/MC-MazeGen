@@ -1,0 +1,5 @@
+name: MazeGen
+version: 1.0
+main: com.brandonjja.mazegen.MazeGen
+author: Brandonjja
+description: Maze Generation in Minecraft

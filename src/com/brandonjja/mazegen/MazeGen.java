@@ -3,6 +3,7 @@ package com.brandonjja.mazegen;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.brandonjja.mazegen.commands.CommandManager;
+import com.brandonjja.mazegen.listeners.ListenerManager;
 
 public class MazeGen extends JavaPlugin {
 	
@@ -13,6 +14,7 @@ public class MazeGen extends JavaPlugin {
 		plugin = this;
 		
 		CommandManager.registerCommands();
+		ListenerManager.registerListeners();
 	}
 	
 	@Override

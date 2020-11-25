@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.brandonjja.mazegen.commands.handler.GenerateCommand;
+import com.brandonjja.mazegen.commands.handler.MazeWandCommand;
 
 public class CommandManager implements CommandExecutor {
 	private static Map<String, MazeCommand> commandList = new HashMap<>();
@@ -24,6 +25,7 @@ public class CommandManager implements CommandExecutor {
 	
 	public static void registerCommands() {
 		commandList.put("generate", new GenerateCommand());
+		commandList.put("mazewand", new MazeWandCommand());
 		
 		for (String cmdLabel : commandList.keySet()) {
 			register(cmdLabel, new CommandManager());

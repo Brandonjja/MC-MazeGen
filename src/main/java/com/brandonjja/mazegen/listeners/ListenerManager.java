@@ -10,7 +10,7 @@ public class ListenerManager {
 	public static void registerListeners() {
 		register(new PlayerInteractListener());
 	}
-	
+
 	private static void register(Listener listener) {
 		Bukkit.getPluginManager().registerEvents(listener, MazeGen.getPlugin());
 	}

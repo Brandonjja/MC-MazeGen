@@ -14,28 +14,32 @@ import com.brandonjja.mazegen.api.MazeAPI;
 
 public class PlayerInteractListener implements Listener {
 	
-	final String firstPositionSet = ChatColor.GREEN + "FIRST Position Set";
-	final String secondPositionSet = ChatColor.GREEN + "SECOND Position Set";
+	private final String firstPositionSet = ChatColor.GREEN + "FIRST Position Set";
+	private final String secondPositionSet = ChatColor.GREEN + "SECOND Position Set";
 	
 	@EventHandler
-	public void onStickWand(PlayerInteractEvent e) {
-		Player player = e.getPlayer();
-		ItemStack item = e.getItem();
+	public void onStickWand(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+		ItemStack item = event.getItem();
 		
-		if (item == null) return;
+		if (item == null) {
+			return;
+		}
 		
 		ItemMeta meta = item.getItemMeta();
-		if (!meta.hasDisplayName()) return;
+		if (meta == null || !meta.hasDisplayName()) {
+			return;
+		}
 		
-		if (item.getType() == Material.STICK && item.getItemMeta().getDisplayName().equals("Maze Wand")) {
-			e.setCancelled(true);
-			Action action = e.getAction();
+		if (item.getType() == Material.STICK && meta.getDisplayName().equals("Maze Wand")) {
+			event.setCancelled(true);
+			Action action = event.getAction();
 			if (action == Action.LEFT_CLICK_BLOCK) {
 				player.sendMessage(firstPositionSet);
-				MazeAPI.setLocationOne(e.getClickedBlock().getLocation());
+				MazeAPI.getInstance().setLocationOne(event.getClickedBlock().getLocation());
 			} else if (action == Action.RIGHT_CLICK_BLOCK) {
 				player.sendMessage(secondPositionSet);
-				MazeAPI.setLocationTwo(e.getClickedBlock().getLocation());
+				MazeAPI.getInstance().setLocationTwo(event.getClickedBlock().getLocation());
 			}
 		}
 	}

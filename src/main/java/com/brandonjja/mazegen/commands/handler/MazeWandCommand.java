@@ -10,20 +10,20 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.brandonjja.mazegen.commands.MazeCommand;
 
 public class MazeWandCommand extends MazeCommand {
-	private static ItemStack item;
-	private static String addedItemMsg = ChatColor.GREEN + "Maze Wand has been added to your inventory!";
+	private static final ItemStack WAND;
+
 	static {
-		item = new ItemStack(Material.STICK);
-		ItemMeta meta = item.getItemMeta();
+		WAND = new ItemStack(Material.STICK);
+		ItemMeta meta = WAND.getItemMeta();
 		meta.setDisplayName("Maze Wand");
-		item.setItemMeta(meta);
-		item.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+		WAND.setItemMeta(meta);
+		WAND.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 	}
 	
 	@Override
 	public boolean execute(Player player, String[] args) {
-		player.getInventory().addItem(item);
-		player.sendMessage(addedItemMsg);
+		player.getInventory().addItem(WAND);
+		player.sendMessage(ChatColor.GREEN + "Maze Wand has been added to your inventory!");
 		return true;
 	}
 }
